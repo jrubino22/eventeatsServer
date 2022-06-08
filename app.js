@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const basicAuth = require('express-basic-auth')
+require('dotenv').config()
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -12,7 +12,7 @@ const orderRouter = require('./routes/orderRouter');
 const mongoose = require('mongoose');
 
 const url = 'mongodb://localhost:27017/eventeats';
-const connect = mongoose.connect(url, {
+const connect = mongoose.connect(process.env.MONGODB_URI || url, {
   useCreateIndex: true,
   useFindAndModify: false,
   useNewUrlParser: true,
